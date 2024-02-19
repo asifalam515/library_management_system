@@ -1,22 +1,58 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
-{% for book in books  %}
-<div class="col-md-4 mb-4">
-    <div class="card">
-      <img src="{{ book.image.url }}" class="card-img-top" alt="{{ book.title }}">
-      <div class="card-body">
+<header class="container">
+    <h1 class="font-weight-bold text-4xl my-4">Welcome  to Library </h1>
+    <p class="lead mb-4">
+        This is a simple online library where you can get book that you want.You can borrow.While borrowing you will have to pay certain amount of money and when return the book you will get the money back to you account
+    </p>
+</header>
+
+
+<div class=" d-flex w-100 container">
+
+
+<div class="category w-25">
+   
+    <form method="get">
+        <label><h1 class="text-primary">Categories</h1></label>
+        {% for category in categories %}
+          <div>
+            <input type="checkbox" name="category" value="{{ category.name }}" {% if category.name in selected_categories %}checked{% endif %}>
+            {{ category.name }}
+          </div>
+        {% endfor %}
+        <button type="submit "  class="btn btn-danger">Filter</button>
+      </form>
+</div>
+
+<div class="w-75 row">
+    {% for book in books  %}
+
+    
+     {% comment %} <div class="card row"> {% endcomment %}
+       
+   
+
+      <div class=" card-body col-md-3 m-2 rounded-top border border-1">
+        <img src="{{ book.image.url }}" class="card-img-top  rounded img-fluid" alt="{{ book.title }}">
         <h5 class="card-title">{{ book.title }}</h5>
-        <p class="card-text">{{ book.description |truncatewords:"25" }}</p>
+        <p class="card-text">{{ book.description |truncatewords:"20" }}</p>
         <p class="card-text">Borrowing Price: ${{ book.borrowing_price }}</p>
         <p class="card-text ">Categories: {% for category in book.categories.all %}
-            <button class="btn btn-secondary">{{ category.name }}</button>
+            <button class="btn btn-warning btn-sm">{{ category.name }}</button>
             {% if not forloop.last %}, {% endif %}{% endfor %}</p>
         <a href="" class="btn btn-primary">Borrow</a>
-      </div>
-    </div>
-  </div>
-
-
+      
+  
+</div>
 {% endfor %}
+
+</div>
+
+</div>
+
+
+
 {% endblock content %}
 

@@ -17,9 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from core.views import HomeView
+from books.views import book_list
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('', include('books.urls')),
-    path('', HomeView.as_view(),name='home'),
+    # path('', HomeView.as_view(),name='home'),
+    path('', book_list,name='home'),
+    
 ]

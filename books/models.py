@@ -6,7 +6,7 @@ from accounts.models import UserAccount
 class Book(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
-    image = models.ImageField(upload_to='book_images/')
+    image = models.ImageField(upload_to='static/images/book_covers/')
     borrowing_price = models.DecimalField(max_digits=10, decimal_places=2)
     categories = models.ManyToManyField('Category', related_name='books')
 
