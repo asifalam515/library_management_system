@@ -16,9 +16,7 @@ class UserUpdateForm(UserChangeForm):
         model = User
         fields = ['username', 'first_name', 'last_name', 'email']
 
-    def clean_password(self):
-        
-        return None
+   
     
 class ChangePasswordForm(PasswordChangeForm):
     old_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}), label='Old Password')
