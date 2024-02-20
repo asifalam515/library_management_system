@@ -42,7 +42,7 @@
         <p class="card-text ">Categories: {% for category in book.categories.all %}
             <button class="btn btn-warning btn-sm">{{ category.name }}</button>
             {% if not forloop.last %}, {% endif %}{% endfor %}</p>
-        <a href="" class="btn btn-primary">Borrow</a>
+        <a href=" {% url "borrow_book" book.id %} " class="btn btn-primary">Borrow</a>
       
   
 </div>

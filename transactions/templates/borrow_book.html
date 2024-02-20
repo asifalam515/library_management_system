@@ -1,11 +1,11 @@
-
+<!-- book_list.html -->
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>Borrow Book</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Borrow</button>
-  </form>
+  <h2>Available Books</h2>
+  <ul>
+    {% for book in books %}
+      <li>{{ book.title }} - ${{ book.borrowing_price }} <a href="{% url 'borrow_book' book.id %}">Borrow</a></li>
+    {% endfor %}
+  </ul>
 {% endblock %}

@@ -6,3 +6,10 @@ class UserAccount(models.Model):
     balance = models.DecimalField(default =0,max_digits=12,decimal_places=2)
     def __str__(self) -> str:
         return str(self.user.first_name)
+    
+    def borrow_book(self, book_price):
+        if self.balance >= book_price:
+            self.balance -= book_price
+            self.save()
+            return True
+        return False

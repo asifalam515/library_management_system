@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Transaction
 from .forms import DepositForm, BorrowForm, ReturnForm
+from books.models import Book,BorrowedBook
 
 # views.py
 
@@ -37,19 +38,25 @@ def deposit_money(request):
 
 
 @login_required
-def borrow_book(request):
+def borrow_book(request, book_id):
+    book = Book.objects.get(pk=book_id)
     user_account = request.user.account
 
-    if request.method == 'POST':
-        form = BorrowForm(request.POST, account=user_account)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Book borrowed successfully.')
-            return redirect('home')  # Change 'home' to the desired URL
+    if user_account.borrow_book(book.borrowing_price):
+        # If the user has enough balance, mark the book as borrowed
+        # You may need to create a separate BorrowedBook model to track borrowed books
+        # and relate it to the UserAccount model
+        messages.success(request, f"You have successfully borrowed {book.title}.")
+        return redirect('borrowed_books')  # Redirect to the list of borrowed books
     else:
-        form = BorrowForm(account=user_account)
+        messages.error(request, "Insufficient balance to borrow the book.")
+        return redirect('home')  # Redirect to the home page or book list page
 
-    return render(request, 'borrow_book.html', {'form': form})
+@login_required
+def borrowed_books(request):
+    user_account = request.user.account
+    borrowed_books = BorrowedBook.objects.filter(user_account=user_account)
+    return render(request, 'borrowed_books.html', {'borrowed_books': borrowed_books})
 
 @login_required
 def return_book(request):
