@@ -21,7 +21,7 @@ from books.views import book_list
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
-    path('transactions/',include('transactions.urls')),
+    path('',include('transactions.urls')),
     path('', include('books.urls')),
     # path('', HomeView.as_view(),name='home'),
     path('', book_list,name='home'),
