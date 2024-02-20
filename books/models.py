@@ -29,8 +29,8 @@ class BorrowedBook(models.Model):
         return f"{self.user_account.user.first_name} - {self.book.title}"
 
 class Review(models.Model):
-    user_account = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
-    borrowed_book = models.ForeignKey(BorrowedBook, on_delete=models.CASCADE)
+    user_account = models.ForeignKey(UserAccount, on_delete=models.CASCADE,default=None)
+    borrowed_book = models.ForeignKey(BorrowedBook, on_delete=models.CASCADE,default=None)
     rating = models.IntegerField(choices=[(i, i) for i in range(1, 6)])
     comment = models.TextField()
 

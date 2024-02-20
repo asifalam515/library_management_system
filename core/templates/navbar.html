@@ -12,21 +12,30 @@
           <li class="nav-item m-2">
             <a href=" {% url "login" %} "><button class="btn btn-primary" type="submit">Login</button></a>
           </li>
-          <li class="nav-item m-2">
-            <a href=" {% url "logout" %} "><button class="btn btn-primary" type="submit">Logout</button></a>
-          </li>
+          
           <li class="nav-item m-2">
             <a href=" {% url "register" %} "><button class="btn btn-primary" type="submit">Register</button></a>
            </li>
-           <li class="nav-item m-2">
-            <a href=" {% url "profile" %} "><button class="btn btn-primary" type="submit">Profile</button></a>
-           </li>
-           <li class="nav-item m-2">
-            <a href=" {% url "deposit_money" %} "><button class="btn btn-primary" type="submit">Deposit</button></a>
-           </li>
-           {% if user.is_authenticated %}
-    <h4>Current Balance: ${{ user.account.balance }}</h4>
-  {% endif %}
+
+
+        {% if user.is_authenticated %}
+        <li class="nav-item m-2">
+          <a href=" {% url "profile" %} "><button class="btn btn-primary" type="submit">Profile</button></a>
+         </li>
+         <li class="nav-item m-2">
+          <a href=" {% url "deposit_money" %} "><button class="btn btn-primary" type="submit">Deposit</button></a>
+         </li>
+         <li class="nav-item m-2">
+          <a href=" {% url "logout" %} "><button class="btn btn-primary" type="submit">Logout</button></a>
+        </li>
+         <li class="nav-item m-2">
+          <a href=" {% url "borrowed_books"  %} "><button class="btn btn-primary" type="submit">Borrowed List</button></a>
+         </li>
+         {% if user.is_authenticated %}
+  <h4>Current Balance: ${{ user.account.balance }}</h4>
+{% endif %}
+
+{% endif %}
           
         </ul>
         

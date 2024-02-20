@@ -8,6 +8,8 @@ urlpatterns = [
 
     path('return/', return_book, name='return_book'),
     path('borrowed/', borrowed_books, name='borrowed_books'),
+    path('return_book/<int:borrowed_book_id>/', return_book, name='return_book'),
+
 
     # Add other URL patterns as needed
 ]

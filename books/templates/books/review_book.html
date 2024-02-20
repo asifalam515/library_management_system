@@ -1,0 +1,12 @@
+<!-- review_book.html -->
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <h2>Review Book - {{ borrowed_book.book.title }}</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form |crispy}}
+    <button type="submit" class="btn btn-primary">Submit Review</button>
+  </form>
+  <a href="{% url 'borrowed_books' %}" class="btn btn-secondary">Back to Borrowed Books</a>
+{% endblock %}

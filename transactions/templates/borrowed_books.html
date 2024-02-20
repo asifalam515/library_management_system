@@ -1,8 +1,11 @@
 <!-- borrowed_books.html -->
 {% extends 'base.html' %}
-
+{% comment %} {% load messages %} {% endcomment %}
 {% block content %}
   <h2>Your Borrowed Books</h2>
+
+  {% comment %} {% messages %} {% endcomment %}
+
   <table class="table">
     <thead>
       <tr>
@@ -11,6 +14,7 @@
         <th>Balance After Borrow</th>
         <th>Borrowed Date</th>
         <th>Action</th>
+        <th>Review</th>
       </tr>
     </thead>
     <tbody>
@@ -24,10 +28,15 @@
             {% if borrowed_book.is_returned %}
               <p class='text-info'>Returned</p>
             {% else %}
-              <form method="post">
+              <form method="post" action="{% url 'return_book' borrowed_book.id %}">
                 {% csrf_token %}
                 <button type="submit" class='btn btn-primary'>Return Now</button>
               </form>
+            {% endif %}
+          </td>
+          <td>
+            {% if not borrowed_book.is_returned %}
+              <a class='btn btn-primary' href="{% url 'review_book' borrowed_book.book.id %}">Review book</a>
             {% endif %}
           </td>
         </tr>
