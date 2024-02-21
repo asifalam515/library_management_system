@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from accounts.models import UserAccount
-
+from datetime import datetime
 # Category model
 class Book(models.Model):
     title = models.CharField(max_length=255)
@@ -36,6 +36,12 @@ class Review(models.Model):
 
     def __str__(self):
         return f"Review for {self.borrowed_book.book.title} by {self.user_account.user.username}"
+
+def get_default_user():
+    # Replace this logic to get the desired default user
+    return User.objects.first()
+
+
 
 class ReturnTransaction(models.Model):
     borrowed_book = models.OneToOneField(BorrowedBook, on_delete=models.CASCADE, related_name='return_transaction')

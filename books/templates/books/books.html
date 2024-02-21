@@ -43,6 +43,7 @@
             <button class="btn btn-warning btn-sm">{{ category.name }}</button>
             {% if not forloop.last %}, {% endif %}{% endfor %}</p>
         <a href=" {% url "borrow_book" book.id %} " class="btn btn-primary">Borrow</a>
+     
       
   
 </div>
