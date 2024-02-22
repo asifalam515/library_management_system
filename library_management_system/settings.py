@@ -25,15 +25,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-iy2ivjbqbg%udmjb6!igpdnvly_qp4f@s(1y5+iy1eh$7dvuil'
-# SECRET_KEY=env("SECRET_KEY")
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = ["*"]
-# ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'library-management-system-e6w4.onrender.com']
+
 ALLOWED_HOSTS = ["*"]
 CSRF_TRUSTED_ORIGINS = ['https://library-management-system-e6w4.onrender.com','https://*.127.0.0.1']
+
+
+
 
 
 # Application definition
