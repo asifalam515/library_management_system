@@ -8,4 +8,11 @@
       <li>{{ book.title }} - ${{ book.borrowing_price }} <a href="{% url 'borrow_book' book.id %}">Borrow</a></li>
     {% endfor %}
   </ul>
+
+  {% if messages %}
+{% for message in messages %}
+    <div>{{ message }}</div>
+{% endfor %}
+{% endif %}
 {% endblock %}
+

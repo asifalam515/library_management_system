@@ -11,13 +11,13 @@ from django.contrib.auth.decorators import login_required
 class UserRegistrationView(FormView):
     template_name = 'accounts/user_registration.html'
     form_class = UserRegistrationForm
-    success_url =reverse_lazy('register')
+    success_url =reverse_lazy('home')
     def form_valid(self, form):
         # print(form.cleaned_data)
-        user = form.save() #forms.py theke ouruser return kortese oita user hisebe raktesi
+        user = form.save() 
         login(self.request,user)
         print(user)
-        return super().form_valid(form) #nijei nijeke call kore disse
+        return super().form_valid(form) 
     
     
 class UserLoginView(LoginView):

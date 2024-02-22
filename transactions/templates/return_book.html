@@ -10,3 +10,8 @@
     <button type="submit" class="btn btn-primary">Return</button>
   </form>
 {% endblock %}
+{% if messages %}
+{% for message in messages %}
+    <div>{{ message }}</div>
+{% endfor %}
+{% endif %}

@@ -3,6 +3,16 @@
 
 
 {% block content %}
+{% if messages %}
+    <script>
+        {% for message in messages %}
+            alert("{{ message }}");
+        {% endfor %}
+    </script>
+{% endif %}
+
+
+
 <div class="container mx-auto d-flex flex-column md:flex-row align-items-center my-12 md:my-24">
     <div class="flex flex-column w-100 lg:w-50 justify-content-center items-start pt-12 pb-24 px-6 bg-white rounded-2xl bg-opacity-70 mx-3">
         <h1 class="font-weight-bold text-4xl my-4">Welcome  to Library </h1>
@@ -21,4 +31,5 @@
         {% comment %} <img class="rounded-2xl" src="{% static "img/bank.jpg" %}" alt="bank images"> {% endcomment %}
     </div>
 </div>
+
 {% endblock %}

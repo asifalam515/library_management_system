@@ -12,7 +12,17 @@
 </div>
 
 <div class=" m-5">
-    <a href="{% url "change_password" %} "> <button class="btn btn-secondary">Change Password</button> 
+    <a href="{% url "change_password" %} "> <button class="btn btn-warning">Change Password</button> 
+        <a href=" {% url "borrowed_books"  %} "><button class="btn btn-primary" type="submit">Borrowed History</button></a>
 </div>
+
+
+
+
+{% if messages %}
+{% for message in messages %}
+    <div>{{ message }}</div>
+{% endfor %}
+{% endif %}
   
 {% endblock %}

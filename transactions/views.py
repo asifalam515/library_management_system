@@ -6,8 +6,33 @@ from django.contrib.auth.decorators import login_required
 from .models import Transaction
 from .forms import DepositForm, BorrowForm, ReturnForm
 from books.models import Book,BorrowedBook
+from django.core.mail import EmailMessage,EmailMultiAlternatives
+from django.template.loader import render_to_string
 
 # views.py
+
+# send email function
+def send_transaction_email(user,amount,subject,template):
+    
+    message=render_to_string(template,{
+        'user':user,
+        'amount':amount
+    })
+    send_email =EmailMultiAlternatives(subject,'',to=[user.email])
+    send_email.attach_alternative(message,"text/html")
+    send_email.send()
+    
+    
+def send_borrow_book_email(user, book_title,subject,template):
+     message=render_to_string(template,{
+        'user':user,
+        
+    })
+     send_email =EmailMultiAlternatives(subject,'',to=[user.email])
+     send_email.attach_alternative(message,"text/html")
+     send_email.send()
+
+    
 
 @login_required
 def deposit_money(request):
@@ -18,17 +43,19 @@ def deposit_money(request):
         if form.is_valid():
             deposited_amount = form.cleaned_data['amount']
 
-            # Update the user's account balance after the deposit
+            
             user_account.balance += deposited_amount
+           
             user_account.save()
 
-            # Save the deposit transaction
+           
             form.instance.balance_before_transaction = user_account.balance - deposited_amount
             form.instance.balance_after_transaction = user_account.balance
             form.instance.transaction_type = 'deposit'
             form.save()
 
             messages.success(request, 'Deposit successful.')
+            send_transaction_email(request.user,deposited_amount,"Deposit Message","deposit_email.html")
             return redirect('home')  # Change 'home' to the desired URL
 
     else:
@@ -60,6 +87,7 @@ def borrow_book(request, book_id):
         # If the user has enough balance, create a BorrowedBook record
         BorrowedBook.objects.create(user_account=user_account, book=book)
         messages.success(request, f"You have successfully borrowed {book.title}.")
+        send_borrow_book_email(request.user,book.title,"Book Borrowed","borrow_book_email.html")
         return redirect('borrowed_books')  # Redirect to the list of borrowed books
     else:
         messages.error(request, "Insufficient balance to borrow the book.")
