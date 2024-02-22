@@ -112,11 +112,13 @@ WSGI_APPLICATION = 'library_management_system.wsgi.application'
 #     }
 # }
 
+# Replace the SQLite DATABASES configuration with PostgreSQL:
 DATABASES = {
-  'default': dj_database_url.config(
- # Replace this value with your local database's connection string.
- default='postgres://library_management_o0nt_user:svd5i5B5q0NXarqEUjcgfI194FBhXU3d@dpg-cnbcr8ol6cac73ef9lf0-a.oregon-postgres.render.com/library_management_o0nt',
- )
+    'default': dj_database_url.config(
+        # Replace this value with your local database's connection string.
+        default='postgres://library_management_o0nt_user:svd5i5B5q0NXarqEUjcgfI194FBhXU3d@dpg-cnbcr8ol6cac73ef9lf0-a.oregon-postgres.render.com/library_management_o0nt',
+        conn_max_age=600
+    )
 }
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
