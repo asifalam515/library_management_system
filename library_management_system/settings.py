@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-iy2ivjbqbg%udmjb6!igpdnvly_qp4f@s(1y5+iy1eh$7dvuil'
+SECRET_KEY =env("SECRET_KEY")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "crispy_forms",
+    "django.contrib.humanize",
     "crispy_bootstrap5",
     'accounts',
     'core',
@@ -70,7 +71,7 @@ MIDDLEWARE = [
 
     
 ]
-MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+# MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 ROOT_URLCONF = 'library_management_system.urls'
 
@@ -96,14 +97,6 @@ WSGI_APPLICATION = 'library_management_system.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-#this line is here just for show
 
 # ...
 # DATABASES = {
@@ -122,7 +115,7 @@ DATABASES = {
     'default': dj_database_url.config(
         # Replace this value with your local database's connection string.
         default='postgres://library_management_o0nt_user:svd5i5B5q0NXarqEUjcgfI194FBhXU3d@dpg-cnbcr8ol6cac73ef9lf0-a.oregon-postgres.render.com/library_management_o0nt',
-        conn_max_age=600
+        
     )
 }
 # Password validation
@@ -177,8 +170,8 @@ EMAIL_HOST_PASSWORD=env("EMAIL_PASSWORD")
 
 
 
-CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOW_ALL_ORIGINS=True
-CSRF_TRUSTED_ORIGINS =[]
-CORS_ORIGIN_WHITELIST = []
-CORS_ALLOWED_ORIGINS=[]
+# CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ALLOW_ALL_ORIGINS=True
+# CSRF_TRUSTED_ORIGINS =[]
+# CORS_ORIGIN_WHITELIST = []
+# CORS_ALLOWED_ORIGINS=[]
