@@ -97,8 +97,7 @@ WSGI_APPLICATION = 'library_management_system.wsgi.application'
 # }
 
 #this line is here just for show
-# SECRET_KEY=env("SECRET_KEY")
-# SECRET_KEY = env("SECRET_KEY")
+
 # ...
 # DATABASES = {
 #     'default': {
