@@ -31,8 +31,9 @@ SECRET_KEY = 'django-insecure-iy2ivjbqbg%udmjb6!igpdnvly_qp4f@s(1y5+iy1eh$7dvuil
 DEBUG = True
 
 # ALLOWED_HOSTS = ["*"]
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'library-management-system-e6w4.onrender.com']
-
+# ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'library-management-system-e6w4.onrender.com']
+ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS = ['https://library-management-system-e6w4.onrender.com','https://*.127.0.0.1']
 
 
 # Application definition
@@ -171,3 +172,11 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER=env("EMAIL")
 EMAIL_HOST_PASSWORD=env("EMAIL_PASSWORD")
+
+
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_ALL_ORIGINS=True
+CSRF_TRUSTED_ORIGINS =[]
+CORS_ORIGIN_WHITELIST = []
+CORS_ALLOWED_ORIGINS=[]
