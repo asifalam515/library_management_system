@@ -14,7 +14,7 @@
 
 <div class="category w-25">
    {% comment %} changed to post from get {% endcomment %}
-    <form method="post">
+    <form method="get">
       {% csrf_token %}
         <label><h1 class="text-primary">Categories</h1></label>
         {% for category in categories %}
